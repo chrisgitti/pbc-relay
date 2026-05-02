@@ -37,7 +37,7 @@ wss.on('connection', ws => {
       const room = rooms[myRoom];
       if (!room) return;
       const opponent = myRole === 'host' ? room.guest : room.host;
-      if (opponent?.readyState === WebSocket.OPEN) opponent.send(raw);
+      if (opponent?.readyState === WebSocket.OPEN) opponent.send(raw.toString());
     }
   });
 
