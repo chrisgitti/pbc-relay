@@ -4,7 +4,10 @@ const wss = new WebSocket.Server({ port: process.env.PORT || 8080 });
 const rooms = {}; // code → { host: ws, guest: ws|null, hostName: string }
 
 function generateCode() {
-  return Math.random().toString(36).slice(2, 8).toUpperCase();
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // ohne 0/O und 1/I
+  let code = '';
+  for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  return code;
 }
 
 wss.on('connection', ws => {
